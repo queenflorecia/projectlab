@@ -90,6 +90,22 @@ void printSeluruhCatatan(struct Catatan c[], int size, int opsi){
 			
 			break;
 		case 5:	break;
+		
+		case 6: {
+    		long long saldo = 0;
+    		i = 0;
+    		while (c[i].kodeTanggal > 0) {
+        		if (c[i].masukLuar == 1)
+            		saldo += c[i].nominal;
+        		else if (c[i].masukLuar == 2)
+            		saldo -= c[i].nominal;
+        		i++;
+    		}
+			puts("==== SALDO SAAT INI ====");
+    		printNominal(saldo);
+    		break;
+		}
+
 	}
 }
 
@@ -112,12 +128,14 @@ void cekCatatan(struct Catatan c[],int size){
 		printf("3. Filter sesuai tanggal\n");
 		printf("4. Filter sesuai nominal\n");
 		printf("5. Kembali ke menu\n");
+		printf("6. Cek saldo\n");
 		do{
 			ask();
 			scanf("%d",&opsi);
-		} while (opsi<1||opsi>5);
+		} while (opsi<1||opsi>6);
 		puts("");
 		printSeluruhCatatan(c,size,opsi);
 	} while (opsi!=5);
 		
+
 }
